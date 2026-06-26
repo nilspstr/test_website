@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kontakt – Jan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="stub-body">
+
+  <nav class="site-nav" role="navigation" aria-label="Hauptnavigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Jan</a>
+      <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" role="list">
+        <li><a href="index.html">Texte</a></li>
+        <li><a href="ueber-mich.html">Über mich</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="stub-content">
+    <h1>Kontakt</h1>
+
+    <div class="prose">
+      <p>
+        Du hast Fragen, Anmerkungen oder möchtest einfach in Kontakt treten? Schreib mir gerne –
+        ich freue mich über Nachrichten.
+      </p>
+    </div>
+
+    <!-- ============================================================
+         CONTACT FORM
+         Aktuell: Öffnet das lokal installierte E-Mail-Programm via
+         mailto:-Link. Kein Server-Backend nötig.
+
+         Für echten Versand ohne E-Mail-Client-Abhängigkeit:
+         1. Formspree: action="https://formspree.io/f/DEINE_ID"
+            method="POST" — kostenfrei bis 50 Einreichungen/Monat.
+         2. Netlify Forms: einfach netlify="true" am <form>-Tag,
+            Rest übernimmt Netlify beim Deploy automatisch.
+         3. Eigenes Backend: fetch() auf einen Node/PHP-Endpunkt.
+         ============================================================ -->
+    <form id="contact-form" class="contact-form" novalidate>
+
+      <div class="form-field">
+        <label for="name">Name <span aria-hidden="true">*</span></label>
+        <input type="text" id="name" name="name" autocomplete="name"
+               required placeholder="Dein Name">
+        <span class="form-error-msg" role="alert">Bitte gib deinen Namen ein.</span>
+      </div>
+
+      <div class="form-field">
+        <label for="email">E-Mail <span aria-hidden="true">*</span></label>
+        <input type="email" id="email" name="email" autocomplete="email"
+               required placeholder="deine@email.de">
+        <span class="form-error-msg" role="alert">Bitte gib eine gültige E-Mail-Adresse ein.</span>
+      </div>
+
+      <div class="form-field">
+        <label for="subject">Betreff <span aria-hidden="true">*</span></label>
+        <input type="text" id="subject" name="subject"
+               required placeholder="Worum geht es?">
+        <span class="form-error-msg" role="alert">Bitte gib einen Betreff ein.</span>
+      </div>
+
+      <div class="form-field">
+        <label for="message">Nachricht <span aria-hidden="true">*</span></label>
+        <textarea id="message" name="message"
+                  required placeholder="Deine Nachricht …"></textarea>
+        <span class="form-error-msg" role="alert">Bitte gib eine Nachricht ein.</span>
+      </div>
+
+      <button type="submit" class="form-submit">Absenden</button>
+
+      <p class="form-notice">
+        * Pflichtfelder. Das Formular öffnet dein E-Mail-Programm – es werden keine Daten
+        an einen Server übertragen.
+      </p>
+    </form>
+
+    <div id="form-success" class="form-success" role="status" aria-live="polite">
+      Dein E-Mail-Programm sollte sich gleich geöffnet haben. Falls nicht, schreib mir
+      direkt an <a href="mailto:jan@example.com">jan@example.com</a>.
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Jan &nbsp;·&nbsp; <a href="impressum.html">Impressum &amp; Datenschutz</a></p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      const TO_EMAIL = 'jan@example.com'; /* ← Hier echte E-Mail eintragen */
+
+      const form    = document.getElementById('contact-form');
+      const success = document.getElementById('form-success');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        /* Fehlerstatus zurücksetzen */
+        form.querySelectorAll('.form-field').forEach(function (f) {
+          f.classList.remove('has-error');
+        });
+
+        const name    = form.elements['name'];
+        const email   = form.elements['email'];
+        const subject = form.elements['subject'];
+        const message = form.elements['message'];
+        let valid = true;
+
+        if (!name.value.trim()) {
+          name.closest('.form-field').classList.add('has-error');
+          valid = false;
+        }
+        if (!email.value.trim() || !isValidEmail(email.value.trim())) {
+          email.closest('.form-field').classList.add('has-error');
+          valid = false;
+        }
+        if (!subject.value.trim()) {
+          subject.closest('.form-field').classList.add('has-error');
+          valid = false;
+        }
+        if (!message.value.trim()) {
+          message.closest('.form-field').classList.add('has-error');
+          valid = false;
+        }
+
+        if (!valid) {
+          /* Fokus auf erstes fehlerhaftes Feld */
+          form.querySelector('.has-error input, .has-error textarea').focus();
+          return;
+        }
+
+        /* mailto:-Link aufbauen und öffnen */
+        var body = 'Von: ' + name.value.trim() + '\n'
+                 + 'E-Mail: ' + email.value.trim() + '\n\n'
+                 + message.value.trim();
+
+        window.location.href = 'mailto:' + TO_EMAIL
+          + '?subject=' + encodeURIComponent(subject.value.trim())
+          + '&body='    + encodeURIComponent(body);
+
+        success.style.display = 'block';
+        success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        form.reset();
+      });
+
+      function isValidEmail(v) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+      }
+    })();
+  </script>
+</body>
+</html>

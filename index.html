@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jan – Geschichtsportfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="site-nav" role="navigation" aria-label="Hauptnavigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Jan</a>
+      <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" role="list">
+        <li><a href="index.html">Texte</a></li>
+        <li><a href="ueber-mich.html">Über mich</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="home-hero">
+    <p class="home-hero-label">Geschichtsportfolio</p>
+    <p class="home-hero-title">Wissenschaftliche Arbeiten zu Geschichte, Stadtentwicklung und visueller Propaganda</p>
+  </header>
+
+  <!-- TILE GRID -->
+  <main id="main-content">
+    <section class="posts-section" aria-label="Beiträge">
+      <div class="posts-grid">
+
+        <a href="muenchen-stadtbefestigung.html"
+           class="post-tile"
+           style="background-image: url('M%C3%BCnchen%20Stadtbefestigung/Title.jpeg');"
+           aria-label="Beitrag: Die Mauern, die München formten">
+          <div class="tile-overlay">
+            <h2 class="tile-title">Die Mauern, die München formten</h2>
+          </div>
+        </a>
+
+        <a href="ns-bild.html"
+           class="post-tile"
+           style="background-image: url('NS%20Bild/Title.png');"
+           aria-label="Beitrag: Die Schauseite des Regimes">
+          <div class="tile-overlay">
+            <h2 class="tile-title">Die Schauseite des Regimes</h2>
+          </div>
+        </a>
+
+        <a href="olympia92.html"
+           class="post-tile"
+           style="background-image: url('Olympia92/Title.png');"
+           aria-label="Beitrag: Barcelona '92">
+          <div class="tile-overlay">
+            <h2 class="tile-title">Barcelona&nbsp;'92</h2>
+          </div>
+        </a>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>&copy; 2026 Jan &nbsp;·&nbsp; <a href="impressum.html">Impressum &amp; Datenschutz</a></p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
